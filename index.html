@@ -1,0 +1,42 @@
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/7/70/Topographic_Map_of_Bir_Tawil.png)
+  }
+  
+  section {
+    text-align: center;
+  }
+</style>
+
+<section>
+  distance from center: page <span class="dist">0</span>
+</section>
+
+<script>
+  Math.distance = (p0, p1) => {
+    const dx = p1.x - p0.x
+    const dy = p1.y - p0.y
+    return Math.sqrt(dx * dx + dy * dy)
+  }
+  
+  function move (e) {
+    const span = document.querySelector('.dist')
+    const center = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2
+    }
+    const mouse = {
+      x: e.clientX,
+      y: e.clientY
+    }
+    const d = Math.distance(center, mouse)
+    span.textContent = Math.round(d)
+  }
+
+  window.addEventListener('mousemove', move)
+</script>
